@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+ 
+int main()
+{
+int i, j ,n ,m , type_input ;
+int numbers[100][100];
+int *str;
+printf("n=");
+scanf("%d", &n);
+printf("m=");
+scanf("%d", &m);
+ printf("Выберите тип ввода: \n1 - ручной ввод\n2 - рандом\n");
+while (scanf("%d", &type_input) != 1 || getchar() != '\n'){
+    printf("Ошибка!\n");
+    rewind(stdin);
+}
+if (type_input == 2) {
+    srand(time(NULL));
+        for (i=0; i < n; i++) {
+             for (j=0; j < m; j++) {
+                numbers[i][j] = rand() % 200 - 100;
+            }
+        }
+        printf("Элементы массива:\n");
+    for (i=0; i < n; i++) {
+        for (j=0; j < m; j++) {
+            
+        }
+                   printf("\n");
+    }
+}
+else if (type_input == 1) {
+    printf("Значения:\n");
+    for (i=0; i < n; i++) {
+             for (j=0; j < m; j++) {
+          int number;
+           scanf("%d", &number);
+            numbers[i][j] = number;
+        } 
+    }
+    
+}
+ else {
+    printf("Такого варианта нет");
+    return 0;
+      }
+ 
+ for (i=0; i < n; i++) {
+    for (j=0; j < m; j++) {
+        printf("%5d", numbers[i][j]);
+    }
+    
+    printf("\n");
+}
+printf("Переделанная матрица\n");
+   
+ 
+int last_num = -5000000;
+int num_count = 0;
+int line_num = 0;
+for (i=0; i < n; i++) {
+    for (j=0; j < m; j++) {
+        if (last_num < numbers[i][j]) {
+            last_num = numbers[i][j];
+            num_count++;
+        }
+    }
+    if (num_count == m) {
+        line_num = i;
+        break;
+    }
+}
+ 
+int g;
+for (j=0; j < m; j++) {
+    for (g=j; g < m; g++) {
+        if (numbers[i][j] < numbers[i][g]) {
+            int buff = numbers[i][j];
+            numbers[i][j] = numbers[i][g];
+            numbers[i][g] = buff;
+        }
+    }
+}
+ 
+for (i=0; i < n; i++) {
+    for (j=0; j < m; j++) {
+        printf("%5d", numbers[i][j]);
+    }
+    printf("\n");
+} 
+}
