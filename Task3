@@ -1,0 +1,72 @@
+
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+ 
+int main()
+{
+int i, j ,n ,m , type_input ;
+int numbers[100][100];
+int *str;
+printf("n=");
+scanf("%d", &n);
+printf("m=");
+scanf("%d", &m);
+ printf("Выберите тип ввода: \n1 - ручной ввод\n2 - рандом\n");
+while (scanf("%d", &type_input) != 1 || getchar() != '\n'){
+    printf("Ошибка!\n");
+    rewind(stdin);
+}
+if (type_input == 2) {
+    srand(time(NULL));
+        for (i=0; i < n; i++) {
+             for (j=0; j < m; j++) {
+                numbers[i][j] = rand() % 200 - 100;
+            }
+        }
+        printf("Элементы массива:\n");
+    for (i=0; i < n; i++) {
+        for (j=0; j < m; j++) {
+            
+        }
+                   printf("\n");
+    }
+}
+else if (type_input == 1) {
+    printf("Значения:\n");
+    for (i=0; i < n; i++) {
+             for (j=0; j < m; j++) {
+          int number;
+           scanf("%d", &number);
+            numbers[i][j] = number;
+        } 
+    }
+    
+}
+ else {
+    printf("Такого варианта нет");
+    return 0;
+      }
+ 
+ for (i=0; i < n; i++) {
+    for (j=0; j < m; j++) {
+        printf("%5d", numbers[i][j]);
+    }
+    
+    printf("\n");
+}
+
+
+int start = 0;
+	int sum = 0;
+	for (int i = 0; i <= n / 2; i++) {
+		for (int j = start; j < n - start; j++) {
+			sum = sum + numbers[i][j];
+		}
+		start++;
+	}
+
+	printf("Сумма элементов: %d\n", sum);
+
+	return 0;
+}
